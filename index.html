@@ -38,35 +38,35 @@
                     <div class="text-sm font-medium text-slate-400">Budget : <span id="budget" class="text-emerald-400 font-bold">100.0</span>M€</div>
                 </div>
 
-                <!-- Terrain Virtuel Simplifié -->
+                <!-- Terrain Virtuel -->
                 <div class="bg-emerald-950/40 border border-emerald-800/30 rounded-xl p-4 min-h-[350px] flex flex-col justify-around items-center relative overflow-hidden">
                     <div class="absolute inset-0 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
                     
                     <!-- Ligne Attaquants -->
-                    <div class="w-full flex justify-center gap-4 z-10" id="slot-fw">
-                        <div class="player-slot border border-dashed border-emerald-500/40 bg-emerald-900/20 rounded-lg p-2 w-28 text-center cursor-pointer hover:bg-emerald-800/30 transition">
-                            <span class="block text-xs text-emerald-300 font-semibold">BU / ATQ</span>
+                    <div class="w-full flex justify-center gap-4 z-10">
+                        <div id="slot-fw" class="player-slot border border-dashed border-emerald-500/40 bg-emerald-900/20 rounded-lg p-2 w-28 text-center cursor-pointer hover:bg-emerald-800/30 transition">
+                            <span class="block text-xs text-emerald-300 font-semibold">FW</span>
                             <span class="text-xs text-slate-400">+ Choisir</span>
                         </div>
                     </div>
                     <!-- Ligne Milieux -->
-                    <div class="w-full flex justify-center gap-4 z-10" id="slot-md">
-                        <div class="player-slot border border-dashed border-emerald-500/40 bg-emerald-900/20 rounded-lg p-2 w-28 text-center cursor-pointer hover:bg-emerald-800/30 transition">
-                            <span class="block text-xs text-emerald-300 font-semibold">MILIEU</span>
+                    <div class="w-full flex justify-center gap-4 z-10">
+                        <div id="slot-md" class="player-slot border border-dashed border-emerald-500/40 bg-emerald-900/20 rounded-lg p-2 w-28 text-center cursor-pointer hover:bg-emerald-800/30 transition">
+                            <span class="block text-xs text-emerald-300 font-semibold">MD</span>
                             <span class="text-xs text-slate-400">+ Choisir</span>
                         </div>
                     </div>
                     <!-- Ligne Défenseurs -->
-                    <div class="w-full flex justify-center gap-4 z-10" id="slot-df">
-                        <div class="player-slot border border-dashed border-emerald-500/40 bg-emerald-900/20 rounded-lg p-2 w-28 text-center cursor-pointer hover:bg-emerald-800/30 transition">
-                            <span class="block text-xs text-emerald-300 font-semibold">DÉFENSEUR</span>
+                    <div class="w-full flex justify-center gap-4 z-10">
+                        <div id="slot-df" class="player-slot border border-dashed border-emerald-500/40 bg-emerald-900/20 rounded-lg p-2 w-28 text-center cursor-pointer hover:bg-emerald-800/30 transition">
+                            <span class="block text-xs text-emerald-300 font-semibold">DF</span>
                             <span class="text-xs text-slate-400">+ Choisir</span>
                         </div>
                     </div>
                     <!-- Gardien -->
-                    <div class="w-full flex justify-center gap-4 z-10" id="slot-gk">
-                        <div class="player-slot border border-dashed border-emerald-500/40 bg-emerald-900/20 rounded-lg p-2 w-28 text-center cursor-pointer hover:bg-emerald-800/30 transition">
-                            <span class="block text-xs text-emerald-300 font-semibold">GARDIEN</span>
+                    <div class="w-full flex justify-center gap-4 z-10">
+                        <div id="slot-gk" class="player-slot border border-dashed border-emerald-500/40 bg-emerald-900/20 rounded-lg p-2 w-28 text-center cursor-pointer hover:bg-emerald-800/30 transition">
+                            <span class="block text-xs text-emerald-300 font-semibold">GK</span>
                             <span class="text-xs text-slate-400">+ Choisir</span>
                         </div>
                     </div>
@@ -112,6 +112,19 @@
         </aside>
 
     </main>
+
+    <!-- Fenêtre modale de sélection de joueur -->
+    <div id="player-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold text-slate-200">Choisir un <span id="modal-pos-title" class="text-emerald-400">Joueur</span></h3>
+                <button id="close-modal" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            </div>
+            <div id="modal-players-list" class="space-y-2 max-h-64 overflow-y-auto pr-1">
+                <!-- Les joueurs injectés dynamiquement ici -->
+            </div>
+        </div>
+    </div>
 
     <!-- Pied de page -->
     <footer class="bg-slate-900 border-t border-slate-800 py-4 text-center text-xs text-slate-500">
