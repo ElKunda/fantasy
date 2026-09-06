@@ -2,6 +2,8 @@ import { LEAGUES } from './config.js';
 import { FantasyEngine } from './engine.js';
 import { FootballAPI } from './api.js';
 
+import { saveTeamToDatabase } from './supabase.js';
+
 const engine = new FantasyEngine();
 const api = new FootballAPI();
 
@@ -179,4 +181,37 @@ resetBtn.addEventListener('click', () => {
 
 saveBtn.addEventListener('click', () => {
     alert("Équipe enregistrée avec succès !");
+});
+
+// ... (tout ton code précédent dans app.js)
+
+saveBtn.addEventListener('click', async () => {
+    const managerName = prompt("Entre ton nom de manager pour enregistrer l'équipe :", "Manager_Demo");
+    if (!managerName) return;
+
+    // Vérifier si l'équipe a au moins un joueur
+    const hasPlayers = Object.values(engine.team).some(player => player !== null);
+    if (!hasPlayers) {
+        alert("Ton équipe est vide ! Sélectionne au moins un joueur.");
+        return;
+    }
+
+    saveBtn.textContent = "Enregistrement...";
+    saveBtn.disabled = true;
+
+    const success = await saveTeamToDatabase(
+        managerName, 
+        engine.selectedLeague, 
+        engine.budget, 
+        engine.team
+    );
+
+    if (success) {
+        alert("Équipe enregistrée avec succès dans la base de données Supabase !");
+    } else {
+        alert("Erreur lors de l'enregistrement.");
+    }
+
+    saveBtn.textContent = "Enregistrer l'équipe";
+    saveBtn.disabled = false;
 });
